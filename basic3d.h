@@ -12,9 +12,12 @@ public:
 private:
     void createEntity();
     void createCamera();
+    void createLight();
+    void loadCustomMesh();
 private:
     QWidget* widget;
     Qt3DCore::QEntity* rootEntity;
+    Qt3DCore::QEntity* lightEntity;
 
 signals:
 

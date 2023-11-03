@@ -5,10 +5,12 @@
 #include <Qt3DExtras/qt3dwindow.h>
 #include <Qt3DExtras/qforwardrenderer.h>
 #include <Qt3DExtras/QTorusMesh>
+#include <Qt3DExtras/QSphereMesh>
 #include <Qt3DRender/QCamera>
 #include <Qt3DCore/qentity.h>
 #include <Qt3DRender/qcameralens.h>
 #include <Qt3DRender/qpointlight.h>
+#include <Qt3DRender/qsceneloader.h>
 #include <Qt3DExtras/qfirstpersoncameracontroller.h>
 #include <Qt3DExtras/QPhongMaterial>
 #include "qorbitcameracontroller.h"
@@ -21,6 +23,8 @@ Basic3D::Basic3D(QScreen *parent)
     widget->setWindowTitle("C++3D");
     createEntity();
     createCamera();
+    createLight();
+    loadCustomMesh();
     this->setRootEntity(rootEntity);
 }
 
@@ -51,6 +55,14 @@ void Basic3D::createEntity()
     torusEntity->addComponent(torusMesh);
     torusEntity->addComponent(torusTransform);
     torusEntity->addComponent(material);
+
+    Qt3DCore::QEntity *sphereEntity = new Qt3DCore::QEntity(rootEntity);
+    Qt3DExtras::QSphereMesh *sphereMesh = new Qt3DExtras::QSphereMesh;
+
+    sphereMesh->setRadius(6);
+
+    sphereEntity->addComponent(sphereMesh);
+    sphereEntity->addComponent(material);
 }
 
 void Basic3D::createCamera()
@@ -66,3 +78,37 @@ void Basic3D::createCamera()
     camController->setLookSpeed( 180.0f );
     camController->setCamera(camera);
 }
+
+void Basic3D::createLight()
+{
+    lightEntity = new Qt3DCore::QEntity(rootEntity);
+
+    // Creates a light in the middle
+    Qt3DRender::QPointLight *light = new Qt3DRender::QPointLight(lightEntity);
+    light->setColor("white");
+    light->setIntensity(1);
+    lightEntity->addComponent(light);
+
+    // Move light from middle
+    Qt3DCore::QTransform *lightTransform = new Qt3DCore::QTransform(lightEntity);
+    lightTransform->setTranslation(QVector3D(0, 20, 20));
+    lightEntity->addComponent(lightTransform);
+
+}
+
+void Basic3D::loadCustomMesh()
+{
+    Qt3DCore::QEntity* sceneLoaderEntity;
+    sceneLoaderEntity = new Qt3DCore::QEntity(rootEntity);
+
+    Qt3DRender::QSceneLoader* loader;
+    loader = new Qt3DRender::QSceneLoader(sceneLoaderEntity);
+    loader->setObjectName("felgologo3d.obj");
+    sceneLoaderEntity->addComponent(loader);
+    loader->setSource(QUrl(QString("file:../justqt3dthings/Felgologo3d.obj")));
+
+    Qt3DCore::QTransform *customTransform = new Qt3DCore::QTransform(sceneLoaderEntity);
+    customTransform->setTranslation(QVector3D(0, 10, 0));
+    sceneLoaderEntity->addComponent(customTransform);
+}
+
