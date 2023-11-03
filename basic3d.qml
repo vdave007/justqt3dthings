@@ -11,7 +11,7 @@ Item {
             environment: SceneEnvironment {
                 id: env
                 backgroundMode: SceneEnvironment.Color
-                clearColor: "#FFFFFF"
+                clearColor: "skyblue"
             }
 
             camera: camera

@@ -39,6 +39,8 @@ qt6_add_resources(3dmultitool "3dmultitool"
         "/"
     FILES
         "basic3d.qml"
+        "meshmanipulation3d.qml"
+        "Slider3Axis.qml"
         "Felgologo3d.qml"
         "meshes/cube.mesh"
     )

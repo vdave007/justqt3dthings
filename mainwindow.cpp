@@ -42,9 +42,15 @@ void MainWindow::createUi()
     QQuickWidget *quickWidget;
 
     quickWidget = new QQuickWidget;
-    quickWidget->setWindowTitle("Qt Quick 3D");
+    quickWidget->setWindowTitle("Basic QtQuick 3D");
     quickWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
     quickWidget->setSource(QUrl("qrc:/basic3d.qml"));
+    quickWidgets.append(quickWidget);
+
+    quickWidget = new QQuickWidget;
+    quickWidget->setWindowTitle("Qt Quick manipulation");
+    quickWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
+    quickWidget->setSource(QUrl("qrc:/meshmanipulation3d.qml"));
     quickWidgets.append(quickWidget);
 
     for (QQuickWidget *qw : quickWidgets)
