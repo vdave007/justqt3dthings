@@ -8,7 +8,9 @@
 #include <QTabWidget>
 #include <QQuickWidget>
 
-#include "basic3d.h"
+#include "base3dview.h"
+#include "basic3dfromfile.h"
+#include "basic3dshapes.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -48,9 +50,23 @@ void MainWindow::createUi()
     for (QQuickWidget *qw : quickWidgets)
         tabs->addTab(qw, qw->windowTitle());
 
-    basic3dView = new Basic3D(this->screen());
+    {
+        Base3DView* fromFileView = new Basic3DFromFile();
+        fromFileView->init();
+        QWidget* fromFileWidget = fromFileView->getWidget();
+        fromFileWidget->setWindowTitle("C++ from file");
 
-    tabs->addTab(basic3dView->getWidget(), basic3dView->getWidget()->windowTitle());
+        tabs->addTab(fromFileWidget, fromFileWidget->windowTitle());
+    }
+
+    {
+        Base3DView* fromFileView = new Basic3DShapes();
+        fromFileView->init();
+        QWidget* fromFileWidget = fromFileView->getWidget();
+        fromFileWidget->setWindowTitle("C++ basic shapes");
+
+        tabs->addTab(fromFileWidget, fromFileWidget->windowTitle());
+    }
 
 
     this->resize(1280, 720);

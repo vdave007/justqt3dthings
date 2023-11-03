@@ -27,8 +27,9 @@ set(PROJECT_SOURCES
         main.cpp
         mainwindow.cpp
         mainwindow.h
-        basic3d.h
-        basic3d.cpp
+        base3dview.h base3dview.cpp
+        basic3dfromfile.h basic3dfromfile.cpp
+        basic3dshapes.h basic3dshapes.cpp
 )
 
 qt_add_executable(3dmultitool ${PROJECT_SOURCES})
