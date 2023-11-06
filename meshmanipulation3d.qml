@@ -28,8 +28,15 @@ Item {
         }
 
         DirectionalLight {
+            visible: directionalLightCheckbox.checked
             eulerRotation.x: -30
             castsShadow: true
+        }
+
+        SpotLight {
+            visible: spotlightCheckbox.checked
+            position: camera.position
+            rotation: camera.rotation
         }
 
         Node {
@@ -147,6 +154,31 @@ Item {
             id: rotationSliderController
             lowerLimit: 0
             upperLimit: 360
+        }
+
+        Row {
+            Text {
+                text: "SpotLight"
+            }
+            CheckBox {
+                id: spotlightCheckbox
+                checked: true
+            }
+        }
+
+        Row {
+            Text {
+                text: "DirectionalLight"
+            }
+            CheckBox {
+                id: directionalLightCheckbox
+                checked: true
+            }
+        }
+
+
+        DebugView {
+            source: view
         }
     }
 

@@ -43,6 +43,7 @@ qt6_add_resources(3dmultitool "3dmultitool"
         "Slider3Axis.qml"
         "Felgologo3d.qml"
         "meshes/cube.mesh"
+        "mars.jpg"
     )
 
 
