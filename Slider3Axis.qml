@@ -4,13 +4,26 @@ import QtQuick.Controls 2.15
 Item {
     id: root
 
+    height: mainColumn.height
+    width: mainColumn.width
+
     property alias valueX: sizeX.value
     property alias valueY: sizeY.value
     property alias valueZ: sizeZ.value
 
     property var valuesVector: Qt.vector3d(valueX, valueY, valueZ)
 
+    property real upperLimit: 5.0
+    property real lowerLimit: 0.0
+
+    function setFromVector(vector) {
+        valueX = vector.x;
+        valueY = vector.y;
+        valueZ = vector.z;
+    }
+
     Column {
+        id: mainColumn
         Row {
             Text {
                 text: "X:"
@@ -19,8 +32,8 @@ Item {
             Slider {
                 id: sizeX
                 value: 1
-                from: 0.1
-                to: 5
+                from: lowerLimit
+                to: upperLimit
             }
 
             Text {
@@ -35,8 +48,8 @@ Item {
             Slider {
                 id: sizeY
                 value: 1
-                from: 0.1
-                to: 5
+                from: lowerLimit
+                to: upperLimit
             }
 
             Text {
@@ -51,8 +64,8 @@ Item {
             Slider {
                 id: sizeZ
                 value: 1
-                from: 0.1
-                to: 5
+                from: lowerLimit
+                to: upperLimit
             }
 
             Text {
