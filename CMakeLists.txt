@@ -30,6 +30,7 @@ set(PROJECT_SOURCES
         base3dview.h base3dview.cpp
         basic3dfromfile.h basic3dfromfile.cpp
         basic3dshapes.h basic3dshapes.cpp
+        mousecursorcontroller.h mousecursorcontroller.cpp
 )
 
 qt_add_executable(3dmultitool ${PROJECT_SOURCES})
@@ -39,12 +40,21 @@ qt6_add_resources(3dmultitool "3dmultitool"
         "/"
     FILES
         "basic3d.qml"
+        "movement3d.qml"
         "meshmanipulation3d.qml"
         "Slider3Axis.qml"
         "Felgologo3d.qml"
+        "textures3d.qml"
         "meshes/cube.mesh"
         "mars.jpg"
     )
+
+qt_add_qml_module(3dmultitool
+    URI Multitool.Helpers
+    VERSION 1.0
+    SOURCES
+        mousecursorcontroller.cpp mousecursorcontroller.h
+)
 
 
 target_link_libraries(3dmultitool PUBLIC

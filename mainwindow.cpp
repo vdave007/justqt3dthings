@@ -53,6 +53,18 @@ void MainWindow::createUi()
     quickWidget->setSource(QUrl("qrc:/meshmanipulation3d.qml"));
     quickWidgets.append(quickWidget);
 
+    quickWidget = new QQuickWidget;
+    quickWidget->setWindowTitle("QtQuick Textures");
+    quickWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
+    quickWidget->setSource(QUrl("qrc:/textures3d.qml"));
+    quickWidgets.append(quickWidget);
+
+    quickWidget = new QQuickWidget;
+    quickWidget->setWindowTitle("Basic Movement 3D");
+    quickWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
+    quickWidget->setSource(QUrl("qrc:/movement3d.qml"));
+    quickWidgets.append(quickWidget);
+
     for (QQuickWidget *qw : quickWidgets)
         tabs->addTab(qw, qw->windowTitle());
 
@@ -73,6 +85,8 @@ void MainWindow::createUi()
 
         tabs->addTab(fromFileWidget, fromFileWidget->windowTitle());
     }
+
+    tabs->setCurrentIndex(3);
 
 
     this->resize(1280, 720);
