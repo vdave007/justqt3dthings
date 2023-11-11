@@ -65,6 +65,13 @@ void MainWindow::createUi()
     quickWidget->setSource(QUrl("qrc:/movement3d.qml"));
     quickWidgets.append(quickWidget);
 
+
+    quickWidget = new QQuickWidget;
+    quickWidget->setWindowTitle("Camera examples");
+    quickWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
+    quickWidget->setSource(QUrl("qrc:/CamerasExample.qml"));
+    quickWidgets.append(quickWidget);
+
     for (QQuickWidget *qw : quickWidgets)
         tabs->addTab(qw, qw->windowTitle());
 
@@ -86,7 +93,7 @@ void MainWindow::createUi()
         tabs->addTab(fromFileWidget, fromFileWidget->windowTitle());
     }
 
-    tabs->setCurrentIndex(3);
+    tabs->setCurrentIndex(2);
 
 
     this->resize(1280, 720);
