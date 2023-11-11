@@ -45,9 +45,12 @@ qt6_add_resources(3dmultitool "3dmultitool"
         "Slider3Axis.qml"
         "Felgologo3d.qml"
         "textures3d.qml"
+        "Rabbit.qml"
         "CamerasExample.qml"
         "meshes/cube.mesh"
+        "meshes/rabbit.mesh"
         "mars.jpg"
+        "rabbit_texture.jpg"
     )
 
 qt_add_qml_module(3dmultitool

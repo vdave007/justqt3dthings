@@ -1,34 +1,68 @@
 import QtQuick 2.15
 import QtQuick3D
+import QtQuick3D.Helpers
 
 View3D {
+    focus: true
+    Keys.onPressed: (event) => {
+        if (event.key === Qt.Key_W) {
+            console.log("Running!")
+            rabbit.state = "run";
+        }
+
+
+        if (event.key === Qt.Key_S) {
+            console.log("Idle!")
+            rabbit.state = "idle";
+        }
+
+
+        if (event.key === Qt.Key_X) {
+            console.log("DEATH!")
+            rabbit.state = "death";
+        }
+    }
+
     environment: SceneEnvironment {
         id: env
         backgroundMode: SceneEnvironment.SkyBox
         clearColor: "skyblue"
     }
 
-    OrthographicCamera {
-        position: Qt.vector3d(0, 200, 300)
-        eulerRotation.x: -30
-    }
+    MouseArea {
+        anchors.fill: parent
 
-    DirectionalLight {
-        eulerRotation.x: -30
-        castsShadow: true
+        onClicked: {
+        }
     }
-
 
     Node {
-        Model {
-            source: "#Sphere"
-            scale: Qt.vector3d(1, 1, 1)
-            materials: [
-                DefaultMaterial {
-                    diffuseColor: "red"
-                }
+        id: scene
+        DirectionalLight {
+            id: directionalLight
+            x: -0
+            y: -0
+            z: 2405.63086
+        }
 
-            ]
+        Node {
+            y: 150
+            PerspectiveCamera {
+                id: perspectiveCamera
+                z: 750
+            }
+
+
+            PropertyAnimation on eulerRotation.y {
+                loops: Animation.Infinite
+                duration: 5000
+                to: 0
+                from: -360
+            }
+        }
+
+        Rabbit {
+            id: rabbit
         }
     }
 }
