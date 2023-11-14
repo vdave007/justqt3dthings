@@ -54,9 +54,9 @@ void MainWindow::createUi()
     quickWidgets.append(quickWidget);
 
     quickWidget = new QQuickWidget;
-    quickWidget->setWindowTitle("QtQuick Textures");
+    quickWidget->setWindowTitle("QtQuick Animations");
     quickWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
-    quickWidget->setSource(QUrl("qrc:/textures3d.qml"));
+    quickWidget->setSource(QUrl("qrc:/animations3d.qml"));
     quickWidgets.append(quickWidget);
 
     quickWidget = new QQuickWidget;

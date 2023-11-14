@@ -14,6 +14,8 @@ Item {
         console.log("Focus changed", focus);
     }
 
+    focus: true
+
     View3D {
             id: view
             anchors.fill: parent
@@ -48,6 +50,8 @@ Item {
                 id: mouseCursorController
                 targetObject: camera
             }
+
+            // TODO: Implement keyboard controller
 
             MouseArea {
                 id: maHelper

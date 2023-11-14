@@ -3,6 +3,7 @@ import QtQuick3D
 import QtQuick3D.Helpers
 
 View3D {
+    id: root
     focus: true
     Keys.onPressed: (event) => {
         if (event.key === Qt.Key_W) {
@@ -41,8 +42,8 @@ View3D {
         DirectionalLight {
             id: directionalLight
             x: -0
-            y: -0
-            z: 2405.63086
+            y: 1000
+            z: 1000
         }
 
         Node {
@@ -64,5 +65,9 @@ View3D {
         Rabbit {
             id: rabbit
         }
+    }
+
+    DebugView {
+        source: root
     }
 }
